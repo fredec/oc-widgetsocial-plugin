@@ -1,0 +1,10 @@
+plugin:
+    name: 'Widgets Sociais'
+    description: 'Pegar postagens dos widgets das redes sociais.'
+    author: Diveramkt
+    icon: oc-icon-globe
+    homepage: ''
+permissions:
+    manage_widgetsociais:
+        tab: 'diveramkt.whatsappfloat::lang.plugin.name'
+        label: 'Gerenciar Widgets Sociais'

@@ -1,0 +1,69 @@
+{% set obj = __SELF__ %}
+
+{% set posts=obj.postagens %}
+{% if obj.count %}
+<div class=" formato_{{obj.formato}} lista_padrao_widgetsociais horizontal_{{obj.horizontal}}">
+	<div class="ul ">
+		<!-- swiper-wrapper -->
+		{% for key,cur in posts.links %}
+
+		{% if key < obj.total %}
+		<!-- swiper-slide -->
+		<div class="li ">
+			<a href="{{ cur }}" target="_blank">
+				<img src="{{ posts.src[key] }}" alt="{{ posts.descriptions[key] }}" />
+			</a>
+		</div>
+		{% endif %}
+
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+
+{% if obj.formato == 'carrosel' %}
+
+{% if obj.load_carrosel %}
+{% put styles %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
+{% endput %}
+{% endif %}
+
+{% put scripts %}
+{% if obj.load_carrosel %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+{% endif %}
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('.formato_carrosel.lista_padrao_widgetsociais .ul').slick({
+			dots: false,
+			infinite: true,
+			speed: 500,
+			slidesToShow: {{obj.horizontal}},
+			slidesToScroll: 1,
+			autoplay: true,
+			autoplaySpeed: 4000,
+			arrows: false,
+			mobileFirst: true,
+			centerMode: true,
+		});
+
+	// 	var swiper = new Swiper('.formato_carrosel.lista_padrao_widgetsociais', {
+	// 		slidesPerView: 3,
+	// 		centeredSlides: true,
+	// 		autoplay: {
+	// 			delay: 5000,
+	// 		},
+	// 		// spaceBetween: '0',
+	// 	// navigation: {
+	// 	// 	nextEl: '.swiper-button-next',
+	// 	// 	prevEl: '.swiper-button-prev',
+	// 	// },
+	// });
+
+});
+</script>
+{% endput %}
+{% endif %}
